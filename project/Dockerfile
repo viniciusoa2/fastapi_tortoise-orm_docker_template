@@ -14,7 +14,7 @@ RUN apt-get update \
   && apt-get clean
 
 # install python dependencies
-RUN pip install aerich asgi_lifespan  \
+RUN pip install aerich \
     asyncpg fastapi fastapi-pagination  \
     httpx pytest python-multipart tortoise-orm uvicorn
 
