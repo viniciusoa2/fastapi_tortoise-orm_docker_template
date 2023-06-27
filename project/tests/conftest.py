@@ -2,10 +2,10 @@ import os
 
 import pytest
 from starlette.testclient import TestClient
-from tortoise.contrib.fastapi import register_tortoise
 
 from app.config import get_settings, Settings
 from app.main import create_application
+from tests.utils.tortoise import register_tortoise
 
 
 def get_settings_override():
@@ -23,7 +23,8 @@ def test_app():
     # tear down
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
+@pytest.mark.asyncio
 def test_app_with_db():
     # set up
     app = create_application()
@@ -37,5 +38,3 @@ def test_app_with_db():
     )
     with TestClient(app) as test_client:
         yield test_client
-
-    # tear down
