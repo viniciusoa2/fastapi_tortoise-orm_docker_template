@@ -14,7 +14,9 @@ RUN apt-get update \
   && apt-get clean
 
 # install python dependencies
-RUN pip install fastapi uvicorn asyncpg tortoise-orm aerich pytest httpx
+RUN pip install aerich asgi_lifespan  \
+    asyncpg fastapi fastapi-pagination  \
+    httpx pytest python-multipart tortoise-orm uvicorn
 
 # add app
 COPY . .
